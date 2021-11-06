@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:notsepeti/models/kategori_model.dart';
+import 'package:notsepeti/pages/kategori_islemleri.dart';
 import 'package:notsepeti/pages/notdetay.dart';
 import 'package:notsepeti/pages/notlar.dart';
 import 'package:notsepeti/utils/database_helper.dart';
@@ -18,10 +20,21 @@ class _NotListesiState extends State<NotListesi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Not Sepeti"),
-        centerTitle: true,
-      ),
+      appBar:
+          AppBar(title: const Text("Not Sepeti"), centerTitle: true, actions: [
+        PopupMenuButton(itemBuilder: (context) {
+          return [
+             PopupMenuItem(
+                child: ListTile(
+              title: Text("Kategoriler"),
+              leading: Icon(Icons.category),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const Kategoriler()));
+                },
+            ))
+          ];
+        }),
+      ]),
       floatingActionButton: _myWidget(),
       body: const Notlar(),
     );
